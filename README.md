@@ -1,8 +1,6 @@
 # Sekrat::Crypter::Aes
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sekrat/crypter/aes`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a Sekrat::Crypter implementation that uses the AES-256-GCM algorithm to encrypt/decrypt the data handed to it.
 
 ## Installation
 
@@ -22,7 +20,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To use this Crypter with a Sekrat::Manager, you do something like this:
+
+```ruby
+require 'sekrat'
+require 'sekrat/crypter/aes'
+
+confidant = Sekrat.manager(crypter: Sekrat::Crypter::Aes)
+```
+
+Now, when you `confidant.put` secrets, they will be encrypted pretty strongly.
+
+***NOTE: The encrypted payloads that result from this algorithm are basically made of binary data, so if you're using a storage mechanism that doesn't do well with that sort of thing (like plain old filesystem files), it might not be a bad idea to make sure that said storage mechanism either uses the proper encoding or transforms to a non-binary format.***
 
 ## Development
 
@@ -32,7 +41,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/sekrat-crypter-aes. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/sekrat/sekrat-crypter-aes-ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
